@@ -1,21 +1,33 @@
-def fibonacci_recursive(n):
-    if n <= 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+import math
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def get_factorial(n):
+    if n < 0:
+        return "Undefined (factorial does not exist for negative numbers)"
+    return math.factorial(n)
 
 def main():
-    print("=== Fibonacci Series Using Recursion ===")
+    print("=== Prime Number and Factorial Program ===")
     try:
-        terms = int(input("Enter the number of terms: "))
-        if terms <= 0:
-            print("Please enter a positive integer greater than 0.")
+        number = int(input("Enter an integer: "))
+        
+        # Check Prime Status
+        if is_prime(number):
+            print(f"Prime Status : {number} is a PRIME number.")
         else:
-            print(f"Fibonacci series up to {terms} terms:")
-            series = [fibonacci_recursive(i) for i in range(terms)]
-            print(", ".join(map(str, series)))
+            print(f"Prime Status : {number} is NOT a prime number.")
+            
+        # Calculate Factorial
+        fact = get_factorial(number)
+        print(f"Factorial : {number}! = {fact}")
+        
     except ValueError:
         print("Invalid input! Please enter a valid integer.")
 
